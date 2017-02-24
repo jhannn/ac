@@ -3,4 +3,8 @@ var Aluno = function(matricula, nome) {
   this.nome = nome;
 };
 
+Aluno.prototype.setMatricula = function(matricula) {
+	this.matricula=matricula;
+};
+
 module.exports = Aluno;
