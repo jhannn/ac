@@ -6,8 +6,7 @@ var GerenciadorRequerimentos = require('../../app/models/GerenciadorRequerimento
 describe('# Teste da classe GerenciadorRequerimentos', function() {
   describe('## Construtores', function() {
       it('Gerenciador de Requerimentos VALIDO', function() {
-        var requerimento = new Requerimento(aluno, 'aproveitamento', disciplina, data);
-        var gerenciadorRequerimentos = new GerenciadorRequerimentos(requerimento);
+        var gerenciadorRequerimentos = new GerenciadorRequerimentos();
 		gerenciadorRequerimentos.should.not.be.null;
       });
   });

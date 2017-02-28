@@ -2,6 +2,8 @@ var assert = require('assert');
 var should = require('should');
 
 var Disciplina = require('../../app/models/Disciplina.js');
+var Anexo = require('../../app/models/Anexo.js');
+var Curso = require('../../app/models/Curso.js');
 
 describe('# Teste da classe Disciplina', function() {
   describe('## Construtores', function() {
