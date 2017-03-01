@@ -1,5 +1,4 @@
-var AlunoDisciplina = function(aluno, disciplina, situacao) {
-  this.aluno = aluno;
+var AlunoDisciplina = function(disciplina, situacao) {
   this.disciplina = disciplina;
   this.situacao = situacao;
 };
