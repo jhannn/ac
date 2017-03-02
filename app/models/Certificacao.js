@@ -11,6 +11,7 @@ var Certificacao = function(aluno, disciplina, professores, dataCriacao) {
   this.avaliacao = null;
   this.situcao = 'Em andamento';
   this.resultado = null;
+  this.nota=null;
 };
 
 Certificacao.prototype.publicarAvaliacao = function(data, prova) {
@@ -25,7 +26,8 @@ Certificacao.prototype.publicarAvaliacao = function(data, prova) {
 };
 
 Certificacao.prototype.notificarAluno = function(data) {
-	if(this.dataPublicacaoAvaliacao.setDate(this.dataPublicacaoAvaliacao.getDate() + 7)>data){
+  var auxDate=new Date(this.dataPublicacaoAvaliacao);
+	if(auxDate.setDate(auxDate.getDate() + 7)>data){
 		this.alunoNotificado = new Date(data);
     return true;
 	}
@@ -37,12 +39,22 @@ Certificacao.prototype.definirDataAvaliacao = function(data) {
   return true;
 };
 
-Certificacao.prototype.publicarResultado = function(data, resultado) {
-	if(this.dataRealizacaoAvaliacao.setDate(this.dataRealizacaoAvaliacao.getDate() + 7)>data){
+Certificacao.prototype.publicarResultado = function(data, resultado, nota) {
+  var auxDate=new Date(this.dataRealizacaoAvaliacao);
+	if(auxDate.setDate(auxDate.getDate() + 7)>data){
 		this.resultado=resultado;
+    this.nota=nota;
     return true;
 	}
 	return false;
+};
+
+Certificacao.prototype.fecharCertificacao = function() {
+	if(this.resultado==null){
+		return false;
+	}
+  this.situcao='Fechada';
+  return true;
 };
 
 module.exports = Certificacao;
