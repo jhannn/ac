@@ -28,8 +28,7 @@ describe('# Teste da classe Certificacao', function() {
 
   describe('## Funcoes', function() {
     it('Publicar Avaliacao VALIDO', function() {
-      var data = new Date();
-      var dataPublicacao = new Date(data.setDate(data.getDate() + 5));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -39,14 +38,14 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      var dataPublicacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var publicarAvaliacao= certificacao.publicarAvaliacao(dataPublicacao, prova);
-      publicarAvaliacao.should.not.be.null;
+      publicarAvaliacao.should.be.eql(true);
     });
 
     it('Publicar Avaliacao Invalido', function() {
-      var data = new Date();
-      var dataPublicacao = new Date(data.setDate(data.getDate() + 8));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -56,15 +55,14 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      var dataPublicacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 10));
       var publicarAvaliacao= certificacao.publicarAvaliacao(dataPublicacao, prova);
-      publicarAvaliacao.should.be.null;
+      publicarAvaliacao.should.be.eql(false);
     });
 
     it('Notificar Aluno VALIDO', function() {
-      var data = new Date();
-      var dataPublicacao = new Date(data.setDate(data.getDate() + 5));
-      var dataNotificacao = new Date(dataPublicacao.setDate(dataPublicacao.getDate() + 5));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -74,16 +72,16 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
-      var publicarAvaliacao = certificacao.publicarAvaliacao(dataPublicacao, prova);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      var dataPublicacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
+      certificacao.dataPublicacaoAvaliacao=new Date(dataPublicacao);
+      var dataNotificacao = new Date(dataPublicacao.setDate(dataPublicacao.getDate() + 5));
       var notificarAluno = certificacao.notificarAluno(dataNotificacao);
-      notificarAluno.should.not.be.null;
+      notificarAluno.should.be.eql(true);
     });
 
     it('Notificar Aluno Invalido', function() {
-      var data = new Date();
-      var dataPublicacao = new Date(data.setDate(data.getDate() + 5));
-      var dataNotificacao = new Date(dataPublicacao.setDate(dataPublicacao.getDate() + 8));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -93,16 +91,16 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
-      var publicarAvaliacao = certificacao.publicarAvaliacao(dataPublicacao, prova);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      var dataPublicacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
+      certificacao.dataPublicacaoAvaliacao=new Date(dataPublicacao);
+      var dataNotificacao = new Date(dataPublicacao.setDate(dataPublicacao.getDate() + 8));
       var notificarAluno = certificacao.notificarAluno(dataNotificacao);
-      notificarAluno.should.be.null;
+      notificarAluno.should.be.eql(false);
     });
 
     it('Publicar Resultado VALIDO', function() {
-      var data = new Date();
-      var dataRealizacao = new Date(data.setDate(data.getDate() + 5));
-      var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 5));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -112,16 +110,16 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
+      var certificacao = new Certificacao(aluno, disciplina, professores, dataCriacao);
+      var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
+      var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 5));
       var resultadoAvaliacao = certificacao.publicarResultado(dataResultado);
-      resultadoAvaliacao.should.not.be.null;
+      resultadoAvaliacao.should.be.eql(true);
     });
 
     it('Publicar Resultado Invalido', function() {
-      var data = new Date();
-      var dataRealizacao = new Date(data.setDate(data.getDate() + 5));
-      var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 8));
+      var dataCriacao = new Date();
       var aluno = new Aluno('20131014040048', 'Johann Guerra');
       var professor1 = new Professor('54147', 'juninho');
       var professor2 = new Professor('21848', 'pedro');
@@ -131,10 +129,12 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, data);
-      var realizacaoAvaliacao= certificacao.definirDataAvaliacao(dataRealizacao, prova);
+      var certificacao = new Certificacao(aluno, disciplina, professores, dataCriacao);
+      var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
+      var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
+      var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 10));
       var resultadoAvaliacao = certificacao.publicarResultado(dataResultado);
-      resultadoAvaliacao.should.be.null;
+      resultadoAvaliacao.should.be.eql(false);
     });
   });
 });
