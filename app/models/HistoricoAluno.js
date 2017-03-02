@@ -3,7 +3,11 @@ var HistoricoAluno = function(alunoDisciplina) {
 };
 
 HistoricoAluno.prototype.verificarRequisitoCH=function(){
-	if(this.aluno.curso.cargaHoraria>this.getCH()){
+	if(this.alunoDisciplina.length!=0){
+		if((this.alunoDisciplina[0].disciplina.curso.cargaHoraria)/2>=this.getCH()){
+			return true;
+		}
+	}else{
 		return true;
 	}
 	return false;
@@ -11,17 +15,19 @@ HistoricoAluno.prototype.verificarRequisitoCH=function(){
 
 HistoricoAluno.prototype.getCH=function(){
 	var totalCH=0;
-	for (var i in this.alunoDisciplina){
-		totalCH=totalCH+i.disciplina.cargaHoraria;
-	}
+	var aux=this.alunoDisciplina;
+	for (i = 0; i < this.alunoDisciplina.length; i++) { 
+   		totalCH+=aux[i].disciplina.cargaHoraria;
+	};
 	return totalCH;
 };
 
 HistoricoAluno.prototype.verificarRequisitoDisciplina=function(disciplina){
-	for (var i in this.alunoDisciplina){
-		if(i.disciplina==disciplina)
-			return false;
-	}
+	var aux=this.alunoDisciplina;
+	for (i = 0; i < this.alunoDisciplina.length; i++) { 
+   		if(aux[i].disciplina==disciplina)
+   			return false;
+	};
 	return true;
 };
 
