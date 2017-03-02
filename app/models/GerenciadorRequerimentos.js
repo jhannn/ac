@@ -3,6 +3,7 @@ var Certificacao = require('./Certificacao.js');
 var GerenciadorRequerimentos = function(requerimentos, professores) {
 	this.requerimentos=requerimentos || [];
 	this.professores=professores || [];
+	this.certificacoes=[];
 };
 
 var gerenciadorRequerimentos= new GerenciadorRequerimentos();
@@ -37,7 +38,7 @@ GerenciadorRequerimentos.prototype.listarRequerimentosEmAberto = function() {
 GerenciadorRequerimentos.prototype.aceitarRequerimento = function(requerimento, data, prof1, prof2, prof3) {
 	requerimento.situacao='Em andamento';
 	var certificacao = new Certificacao(requerimento.aluno, requerimento.disciplina, this.escolherProfessores(prof1, prof2, prof3), data);
-	return certificacao;
+	return this.certificacoes.push(certificacao);
 };
 
 GerenciadorRequerimentos.prototype.escolherProfessores = function(prof1, prof2, prof3) {
