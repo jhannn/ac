@@ -1,5 +1,8 @@
-var GerenciadorRequerimentos = function(requerimentos) {
+var Certificacao = require('./Certificacao.js');
+
+var GerenciadorRequerimentos = function(requerimentos, professores) {
 	this.requerimentos=requerimentos || [];
+	this.professores=professores || [];
 };
 
 var gerenciadorRequerimentos= new GerenciadorRequerimentos();
@@ -24,8 +27,25 @@ GerenciadorRequerimentos.prototype.listarRequerimentosEmAberto = function() {
 	var arrayAux=this.requerimentos;
 	if(arrayAux.length!=0){
 		for (i = 0; i < arrayAux.length; i++) { 
-			console.log(arrayAux[i]);
 			if(arrayAux[i].situacao=='aberto')
+				aux.push(arrayAux[i]);
+		}
+	}
+	return aux;
+};
+
+GerenciadorRequerimentos.prototype.aceitarRequerimento = function(requerimento, data, prof1, prof2, prof3) {
+	requerimento.situacao='Em andamento';
+	var certificacao = new Certificacao(requerimento.aluno, requerimento.disciplina, this.escolherProfessores(prof1, prof2, prof3), data);
+	return certificacao;
+};
+
+GerenciadorRequerimentos.prototype.escolherProfessores = function(prof1, prof2, prof3) {
+	var aux=[];
+	var arrayAux=this.professores;
+	if(arrayAux.length!=0){
+		for (i = 0; i < arrayAux.length; i++) { 
+			if(arrayAux[i].matricula==prof1 || arrayAux[i].matricula==prof2 || arrayAux[i].matricula==prof3)
 				aux.push(arrayAux[i]);
 		}
 	}
