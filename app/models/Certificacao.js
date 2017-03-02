@@ -14,31 +14,35 @@ var Certificacao = function(aluno, disciplina, professores, dataCriacao) {
 };
 
 Certificacao.prototype.publicarAvaliacao = function(data, prova) {
-	if(this.dataCriacao.setDate(this.dataCriacao.getDate() + 7)>data){
+  var auxDate=new Date(this.dataCriacao);
+	if(auxDate.setDate(auxDate.getDate() + 7)>data){
 		var avaliacao = new Avaliacao(this.disciplina, data, prova);
-		console.log(new Date(data));
 		this.dataPublicacaoAvaliacao = new Date(data);
-		return this.avaliacao=avaliacao;
+		this.avaliacao=avaliacao;
+    return true;
 	}
-	return null;
+	return false;
 };
 
 Certificacao.prototype.notificarAluno = function(data) {
 	if(this.dataPublicacaoAvaliacao.setDate(this.dataPublicacaoAvaliacao.getDate() + 7)>data){
-		return this.alunoNotificado = new Date(data);
+		this.alunoNotificado = new Date(data);
+    return true;
 	}
-	return null;
+	return false;
 };
 
 Certificacao.prototype.definirDataAvaliacao = function(data) {
-	return this.dataRealizacaoAvaliacao = new Date(data);
+	this.dataRealizacaoAvaliacao = new Date(data);
+  return true;
 };
 
 Certificacao.prototype.publicarResultado = function(data, resultado) {
 	if(this.dataRealizacaoAvaliacao.setDate(this.dataRealizacaoAvaliacao.getDate() + 7)>data){
-		return this.resultado=resultado;
+		this.resultado=resultado;
+    return true;
 	}
-	return null;
+	return false;
 };
 
 module.exports = Certificacao;
