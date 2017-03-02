@@ -12,8 +12,9 @@ describe('# Teste da classe Avaliacao', function() {
       	var data = new Date();
       	var curso = new Curso('Tads');
       	var ementa = new Anexo('Ementa', 'Conteudo');
+        var prova = new Anexo('Prova', 'Conteudo');
         var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-        var avaliacao = new Avaliacao(disciplina, data);
+        var avaliacao = new Avaliacao(disciplina, data, prova);
         avaliacao.should.not.be.null;
       });
   });

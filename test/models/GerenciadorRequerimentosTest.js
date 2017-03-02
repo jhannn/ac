@@ -115,7 +115,7 @@ describe('# Teste da classe GerenciadorRequerimentos', function() {
         professores.push(new Professor('84125', 'joao'));
         var gerenciadorRequerimentos = new GerenciadorRequerimentos(requerimentos, professores);
         var novaCertificacao=gerenciadorRequerimentos.aceitarRequerimento(requerimentos[0], data, '54147', '65812', '84125');
-        novaCertificacao.should.not.be.null;
+        novaCertificacao.should.be.eql(1);
     });
 
       it('Verificar Aceitar professores', function() {
