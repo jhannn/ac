@@ -110,7 +110,7 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, dataCriacao);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
       var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
       var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 5));
@@ -129,12 +129,45 @@ describe('# Teste da classe Certificacao', function() {
       var ementa = new Anexo('Ementa', 'Conteudo');
       var prova = new Anexo('Prova', 'Conteudo');
       var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
-      var certificacao = new Certificacao(aluno, disciplina, professores, dataCriacao);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
       var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
       var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 10));
       var resultadoAvaliacao = certificacao.publicarResultado(dataResultado);
       resultadoAvaliacao.should.be.eql(false);
+    });
+
+    it('Fechar Certificacao VALIDO', function() {
+      var dataCriacao = new Date();
+      var aluno = new Aluno('20131014040048', 'Johann Guerra');
+      var professor1 = new Professor('54147', 'juninho');
+      var professor2 = new Professor('21848', 'pedro');
+      var professor3 = new Professor('68713', 'mano');
+      var professores = [professor1, professor2, professor3];
+      var curso = new Curso('Tads', 2160);
+      var ementa = new Anexo('Ementa', 'Conteudo');
+      var prova = new Anexo('Prova', 'Conteudo');
+      var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      certificacao.resultado="10";
+      var certificacaoFechada=certificacao.fecharCertificacao();
+      certificacaoFechada.should.be.eql(true);
+    });
+
+    it('Fechar Certificacao Invalido', function() {
+      var dataCriacao = new Date();
+      var aluno = new Aluno('20131014040048', 'Johann Guerra');
+      var professor1 = new Professor('54147', 'juninho');
+      var professor2 = new Professor('21848', 'pedro');
+      var professor3 = new Professor('68713', 'mano');
+      var professores = [professor1, professor2, professor3];
+      var curso = new Curso('Tads', 2160);
+      var ementa = new Anexo('Ementa', 'Conteudo');
+      var prova = new Anexo('Prova', 'Conteudo');
+      var disciplina = new Disciplina(2016, 'Bd1', 80, ementa, curso);
+      var certificacao = new Certificacao(aluno, disciplina, professores, new Date(dataCriacao));
+      var certificacaoFechada=certificacao.fecharCertificacao();
+      certificacaoFechada.should.be.eql(false);
     });
   });
 });
