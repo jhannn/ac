@@ -114,7 +114,7 @@ describe('# Teste da classe Certificacao', function() {
       var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
       var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 5));
-      var resultadoAvaliacao = certificacao.publicarResultado(dataResultado);
+      var resultadoAvaliacao = certificacao.publicarResultado(dataResultado, 'Aprovado', 10);
       resultadoAvaliacao.should.be.eql(true);
     });
 
@@ -133,7 +133,7 @@ describe('# Teste da classe Certificacao', function() {
       var dataRealizacao = new Date(dataCriacao.setDate(dataCriacao.getDate() + 5));
       var realizacaoAvaliacao = certificacao.definirDataAvaliacao(dataRealizacao);
       var dataResultado = new Date(dataRealizacao.setDate(dataRealizacao.getDate() + 10));
-      var resultadoAvaliacao = certificacao.publicarResultado(dataResultado);
+      var resultadoAvaliacao = certificacao.publicarResultado(dataResultado, 'Aprovado', 10);
       resultadoAvaliacao.should.be.eql(false);
     });
 
