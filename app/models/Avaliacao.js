@@ -1,6 +1,7 @@
-var Avaliacao = function(disciplina, data) {
-  this.disciplina = disciplina;
-  this.data = data;
-};
+var Avaliacao = function(disciplina, data, prova) {
+	this.disciplina = disciplina;
+	this.data = data;
+	this.prova = prova;
+}
 
 module.exports = Avaliacao;
