@@ -17,12 +17,10 @@ describe('# Teste da classe Aluno', function() {
         disciplinas.push(new Disciplina(2016, 'Bd1', 80, anexo, curso));
         disciplinas.push(new Disciplina(2016, 'Bd2', 80, anexo, curso));
         disciplinas.push(new Disciplina(2016, 'Prog', 80, anexo, curso));
-        console.log(disciplinas);
         var alunoDisciplinas = [];
         alunoDisciplinas.push(new AlunoDisciplina( disciplinas[0], 'aprovado'));
         alunoDisciplinas.push(new AlunoDisciplina( disciplinas[1], 'aprovado'));
         alunoDisciplinas.push(new AlunoDisciplina( disciplinas[2], 'aprovado'));
-        console.log(alunoDisciplinas);
       	var historico = new HistoricoAluno(alunoDisciplinas);
       	var aluno = new Aluno('20131014040048', 'Johann Guerra', curso, historico);
 		aluno.should.not.be.null;
