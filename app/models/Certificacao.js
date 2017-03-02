@@ -22,4 +22,11 @@ Certificacao.prototype.publicarAvaliacao = function(data, prova) {
 	return null;
 };
 
+Certificacao.prototype.notificarAluno = function(data) {
+	if((this.dataCriacao.setDate(this.dataCriacao.getDate() + 7)+this.dataPublicacaoAvaliacao)>data){
+		return this.alunoNotificado = data;
+	}
+	return null;
+};
+
 module.exports = Certificacao;
