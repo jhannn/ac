@@ -1,5 +1,3 @@
-var Curso = require('../app/models/Curso');
-
 var professor = {
   'matricula': '75847',
   'nome': 'Minora'
