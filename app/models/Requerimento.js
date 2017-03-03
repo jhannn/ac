@@ -1,31 +1,19 @@
-var GerenciadorRequerimentos = require('./GerenciadorRequerimentos.js');
-
-var Requerimento = function(aluno, tipo, disciplina, data, situacao) {
-	if(!this.verificarRequisitos(aluno, tipo, disciplina, data)){
-		return null;
-	}
-	this.aluno=aluno;
-	this.tipo=tipo;
-	this.disciplina=disciplina;
-	this.data=data;
-	this.situacao=situacao;
+var Requerimento = function(aluno, componenteCurricular, semestreReferente, data, tipo){
+  this.aluno = aluno;
+  this.componenteCurricular = componenteCurricular;
+  this.semestreReferente = semestreReferente;
+  this.data = data;
+  this.tipo = tipo;
 };
 
-Requerimento.prototype.verificarRequisitos = function(aluno, tipo, disciplina, data) {
-	var historico = aluno.historico;
-	if(historico.verificarRequisitoCH()){//Requisito de CargaHoraria
-		if(historico.verificarRequisitoDisciplina(disciplina)){
-			if(tipo=="certificacao"){
-				if(gerenciadorRequerimentos.verificarRequisitoTipoSemestre(aluno, data)){
-					return true;
-				}
-			}
-			else {
-				return true;
-			}
-		}
-	}
-	return false;
+var certificacao = function (aluno, componenteCurricular, semestre_referente, data, curso) {
+  if(!aluno.historico.findByComponenteCurricular(componenteCurricular)){
+      if(aluno.historico.calcularChAproveitadaOuCertificada()<curso.cargaHoraria/2){
+        var requereminto= new Requerimento(aluno, componenteCurricular, semestreReferente, data, "certificacao");
+        return requereminto;
+      }
+  }
 };
 
 module.exports = Requerimento;
+module.exports.createCertificacao = certificacao;

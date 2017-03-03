@@ -1,8 +1,8 @@
-var Aluno = function(matricula, nome, curso, historico) {
-  this.matricula = matricula;
-  this.nome = nome;
-  this.curso = curso;
-  this.historico=historico;
+var Aluno = function(nome, matricula, historico, curso){
+	this.nome = nome;
+	this.matricula = matricula;
+	this.historico = historico;
+	this.curso = curso;
 };
 
 module.exports = Aluno;

@@ -1,9 +1,8 @@
-var Disciplina = function(ano, nome, cargaHoraria, ementa, curso) {
-	this.ano=ano;
-	this.nome=nome;
-	this.cargaHoraria=cargaHoraria;
-	this.ementa=ementa;
-  	this.curso = curso;
+var Disciplina = function(situacao, semestreReferente, notas, componenteCurricular) {
+	this.situacao=situacao;
+	this.semestreReferente=semestreReferente;
+	this.notas=notas;
+	this.componenteCurricular=componenteCurricular;
 };
 
 module.exports = Disciplina;
