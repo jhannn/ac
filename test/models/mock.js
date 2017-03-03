@@ -15,11 +15,11 @@ var componenteCurricularJogos = {
   'cargaHoraria': 80
 };
 
-var curso = new Curso({
+var curso = {
   'nome': 'Tads',
   'cargaHoraria': 2160,
   'componenteCurriculares':[]
-});
+};
 
 var disciplina = {
   'situacao': 'Cursando',
